@@ -1,0 +1,45 @@
+Python practice scripts
+=======================
+
+This repository collects the supplied self-practice and taught examples, with
+corrected file handling, clearer functions, and consistent run instructions.
+
+Requirements
+------------
+
+Python 3.10 or newer is recommended. The image examples require OpenCV and
+NumPy:
+
+    python -m pip install opencv-python numpy
+
+The matrix, division, and device examples use only the Python standard library.
+Run a script from the repository root, for example:
+
+    python scripts/rotate_matrix.py
+
+Scripts
+-------
+
+* `scripts/bgr_to_hsv.py` loads `assets/pp.jpg`, converts BGR pixels to HSV,
+  and saves a lossless HSV array image at `output/pp_hsv.png`.
+* `scripts/hsv_to_bgr.py` reads that lossless HSV PNG and converts it back to
+  BGR, saving `output/pp_roundtrip.png`. OpenCV loads ordinary color images as
+  BGR; a file is not automatically HSV just because it is named that way.
+  JPEG is lossy and should not be used to store HSV channel values.
+* `scripts/rotate_matrix.py` rotates rectangular or square nested lists 90
+  degrees clockwise and rejects ragged input.
+* `scripts/division_errors.py` demonstrates handling invalid numbers and
+  division by zero without catching unrelated system exceptions.
+* `scripts/smart_device.py` demonstrates instance attributes, defaults, and
+  basic battery-level validation.
+* `scripts/mat_reader.py` samples the five marked points in
+  `assets/IMG_0794.jpg`, converts the source BGR image to HSV, and classifies
+  each patch using its median. Edit `POSITIONS` if using a different image or
+  photograph framing. `unknown` indicates a color outside the simple ranges.
+* `scripts/question1_debug.py` is a small diagnostic wrapper around the same
+  mat reader; it also prints sampled HSV values to help tune thresholds.
+
+The mat color thresholds are starter values, not a calibrated vision model.
+Lighting, camera white balance, and object colors can change classifications.
+The original images are kept in `assets/` so the examples work from the
+repository root regardless of the current shell directory.
